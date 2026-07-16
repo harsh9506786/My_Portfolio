@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ─── GLOBAL RESETS ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0b0b0b;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── SELECTION ─────────────────────────────────────────────── */
+::selection { background: rgba(255, 90, 0, 0.35); color: #fff; }
+
+/* ─── SCROLLBAR ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0b0b0b; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff5a00, #ff2e00);
+  border-radius: 2px;
+}
+
+/* ─── FILM GRAIN ────────────────────────────────────────────── */
+.film-grain {
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='1'/%3E%3C/svg%3E");
+  animation: grain-shift 0.5s steps(2) infinite;
+}
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-2%, -3%); }
+  50%  { transform: translate(3%, 1%); }
+  75%  { transform: translate(-1%, 4%); }
+  100% { transform: translate(2%, -2%); }
+}
+
+/* ─── CURSOR GLOW ───────────────────────────────────────────── */
+.cursor-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 90, 0, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: transform 0.08s linear;
+}
+@media (hover: hover) and (pointer: fine) {
+  html, body, button, a, * { cursor: none !important; }
+}
+
+/* ─── FLAME BUTTON ──────────────────────────────────────────── */
+.btn-flame {
+  background: linear-gradient(135deg, #ff5a00, #ff2e00);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.btn-flame:hover {
+  box-shadow: 0 0 40px rgba(255, 90, 0, 0.55);
+}
+.pulse-glow {
+  animation: pulse-glow-anim 2.6s ease-in-out infinite;
+}
+@keyframes pulse-glow-anim {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 90, 0, 0.35); }
+  50% { box-shadow: 0 0 40px rgba(255, 90, 0, 0.6); }
+}
+
+/* ─── SECTION DIVIDER ───────────────────────────────────────── */
+.sep {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+}
+
+/* ─── CODE TAG CHIP ─────────────────────────────────────────── */
+.chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+  color: #d0d0d0;
+}
+
+/* ─── GRADIENT TEXT ─────────────────────────────────────────── */
+.text-gradient-flame {
+  background: linear-gradient(135deg, #ffaa70, #ff5a00 50%, #ff2e00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
