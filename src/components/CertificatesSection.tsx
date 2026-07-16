@@ -6,26 +6,26 @@ const certificates = [
   {
     title: "50 Days Badge",
     issuer: "LeetCode",
-    date: "2026",
+    date: "July 2026",
     type: "Achievement",
-    image: "https://placehold.co/600x420/141414/ff7a30?text=LeetCode+50+Day+Badge",
-    credentialUrl: "#",
+    image: "/lcbadge.png",
+    credentialUrl: "https://leetcode.com/u/harshvardhan72250/",
   },
   {
     title: "Full Stack Web Development (MERN)",
     issuer: "Udemy",
-    date: "2026",
+    date: "June 2025",
     type: "Certification",
-    image: "https://placehold.co/600x420/141414/ff7a30?text=MERN+Stack+Certificate",
-    credentialUrl: "#",
+    image: "/udemycertificate.jpeg",
+    credentialUrl: "https://learn.knowledgegate.ai/learn/certificate/12161156-219942",
   },
   {
     title: "JavaScript Certification",
-    issuer: "Udemy",
-    date: "2026",
+    issuer: "Knowledge Gate",
+    date: "July 2025",
     type: "Certification",
-    image: "https://placehold.co/600x420/141414/ff7a30?text=JavaScript+Certificate",
-    credentialUrl: "#",
+    image: "jscertificate.jpeg",
+    credentialUrl: "https://ude.my/UC-611f9bb6-2d21-446e-9af9-7f14dccebf01",
   },
 ];
 
@@ -66,7 +66,7 @@ export default function CertificatesSection() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent" />
-                <span className="absolute top-3 left-3 chip text-[0.65rem] flex items-center gap-1 text-flame-400 border-flame-500/25 bg-dark-900/70">
+                <span className="absolute top-3 left-3 chip text-[0.65rem] flex items-center gap-1 !text-white !border-white/10 !bg-black shadow-md">
                   {c.type === "Achievement" ? <Award size={12} /> : <BadgeCheck size={12} />}
                   {c.type}
                 </span>
