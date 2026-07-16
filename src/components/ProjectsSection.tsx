@@ -37,6 +37,57 @@ const projects = [
     live: null,
     github: "https://github.com/harsh9506786",
   },
+  {
+    title: "User & Task Manager",
+    tagline: "Role-Based SaaS Dashboard for Teams",
+    period: "2026",
+    status: "Live",
+    description:
+      "A role-based SaaS dashboard where admins manage team members and assign work, while employees track and update their own tasks in real time — built on Firebase with a fully protected, role-aware routing system.",
+    highlights: [
+      "Firebase Authentication with role-based access control (Admin / Employee) and protected routing",
+      "Admin dashboard to search users, manage roles, delete accounts, and assign tasks with live stats",
+      "Employee dashboard with real-time task tracking — mark complete, delete, and filter by title",
+      "Firestore for real-time data sync, built with Material UI + Tailwind CSS for a polished dashboard UI",
+    ],
+    stack: ["React", "Vite", "Firebase Auth", "Firestore", "Material UI", "Tailwind CSS", "React Router"],
+    live: "https://uand-t-saa-s-system.vercel.app/",
+    github: "https://github.com/harsh9506786",
+  },
+  {
+    title: "BioTech",
+    tagline: "Agriculture Solutions & Products Website",
+    period: "2025",
+    status: "Live",
+    description:
+      "A website built during my internship for an agri-biotech client — showcasing their agriculture solutions and product range across agriculture and public health verticals, with a category-wise catalog and enquiry system designed for lead generation.",
+    highlights: [
+      "Multi-page site (Home, Products, Public Health, Gallery, About, Contact) built with Next.js App Router + TypeScript",
+      "Category-wise product catalog (biofertilizers, biopesticides, biofungicides, bionematicides and more) with filtering and detail pages",
+      "Dedicated Public Health vertical for vector-control products, with its own hero, context and strategy sections",
+      "Enquiry and contact forms with Framer Motion micro-interactions for a polished, conversion-focused UI",
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React Icons"],
+    live: "https://bio-tech-weld.vercel.app/",
+    github: "https://github.com/harsh9506786/Bio-Tech",
+  },
+  {
+    title: "Agnee",
+    tagline: "AI-Driven Branding & Growth Agency Website",
+    period: "2025",
+    status: "Live",
+    description:
+      "The marketing website for the agency I interned with — an AI-driven branding and growth agency. Beyond building the frontend, I containerized and deployed the app myself, setting up the full path from code to production server.",
+    highlights: [
+      "Built the full site (hero, services, team, testimonials, contact) with React, Vite, TypeScript, Tailwind CSS, Framer Motion and a custom Three.js hero animation",
+      "Containerized the application with Docker for a consistent, reproducible build",
+      "Deployed to an AWS EC2 instance, serving the production build directly",
+      "Set up a CI/CD pipeline with GitHub Actions to automate builds and deployments on every push",
+    ],
+    stack: ["React", "Vite", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Docker", "AWS EC2", "GitHub Actions"],
+    live: "https://www.agneeagency.com/",
+    github: "https://github.com/harsh9506786",
+  },
 ];
 
 export default function ProjectsSection() {
