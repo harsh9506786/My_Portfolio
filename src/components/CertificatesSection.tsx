@@ -1,38 +1,34 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, ExternalLink, BadgeCheck } from "lucide-react";
+import { Award, Layout, Smartphone, Cloud, Network } from "lucide-react";
 
-const certificates = [
+const achievements = [
   {
-    title: "50 Days Badge",
-    issuer: "LeetCode",
-    date: "July 2026",
-    type: "Achievement",
-    image: "/lcbadge.png",
-    credentialUrl: "https://leetcode.com/u/harshvardhan72250/",
+    icon: Award,
+    text: "Active LeetCode practitioner — solved 100s of problems",
   },
   {
-    title: "Full Stack Web Development (MERN)",
-    issuer: "Udemy",
-    date: "June 2025",
-    type: "Certification",
-    image: "/udemycertificate.jpeg",
-    credentialUrl: "https://learn.knowledgegate.ai/learn/certificate/12161156-219942",
+    icon: Layout,
+    text: "Can build responsive, production-ready websites",
   },
   {
-    title: "JavaScript Certification",
-    issuer: "Knowledge Gate",
-    date: "July 2025",
-    type: "Certification",
-    image: "jscertificate.jpeg",
-    credentialUrl: "https://ude.my/UC-611f9bb6-2d21-446e-9af9-7f14dccebf01",
+    icon: Smartphone,
+    text: "Ships scalable, cross-platform mobile apps",
+  },
+  {
+    icon: Cloud,
+    text: "Builds, deploys and hosts apps on AWS with Docker + CI/CD",
+  },
+  {
+    icon: Network,
+    text: "Applies System Design fundamentals — caching, load balancing, scalability",
   },
 ];
 
 export default function CertificatesSection() {
   return (
-    <section id="certificates" className="py-20 sm:py-28 px-5 sm:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="certificates" className="py-16 sm:py-20 px-5 sm:px-8">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,55 +37,33 @@ export default function CertificatesSection() {
           className="mb-14"
         >
           <p className="chip inline-block mb-4 text-flame-400 border-flame-500/25 bg-flame-500/5">
-            certificates &amp; achievements
+            achievements
           </p>
           <h2 className="font-syne font-800 text-3xl sm:text-4xl lg:text-5xl">
-            Courses & badges  <span className="text-gradient-flame">I've completed</span>
+            What I've <span className="text-gradient-flame">achieved</span>
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certificates.map((c, i) => (
-            <motion.div
-              key={c.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="group rounded-2xl border border-white/8 bg-white/[0.02] overflow-hidden hover:border-flame-500/30 hover:shadow-flame transition-all duration-300"
-            >
-              <div className="relative aspect-[6/4.2] overflow-hidden">
-                <img
-                  src={c.image}
-                  alt={`${c.title} certificate`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent" />
-                <span className="absolute top-3 left-3 chip text-[0.65rem] flex items-center gap-1 !text-white !border-white/10 !bg-black shadow-md">
-                  {c.type === "Achievement" ? <Award size={12} /> : <BadgeCheck size={12} />}
-                  {c.type}
+        <div className="grid grid-cols-1 gap-3">
+          {achievements.map((a, i) => {
+            const Icon = a.icon;
+            return (
+              <motion.div
+                key={a.text}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                whileHover={{ y: -3, borderColor: "rgba(255,90,0,0.3)" }}
+                className="flex items-center gap-3 p-4 rounded-xl border border-white/8 bg-white/[0.02] transition-colors duration-300"
+              >
+                <span className="w-9 h-9 rounded-lg bg-flame-500/10 flex items-center justify-center shrink-0">
+                  <Icon className="text-flame-400" size={17} />
                 </span>
-              </div>
-
-              <div className="p-5">
-                <h3 className="font-syne font-700 text-white text-base leading-snug">
-                  {c.title}
-                </h3>
-                <p className="text-gray-500 text-xs mt-1 font-mono">
-                  {c.issuer} · {c.date}
-                </p>
-                <a
-                  href={c.credentialUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-4 inline-flex items-center gap-1.5 text-xs text-gray-300 hover:text-flame-400 transition-colors"
-                >
-                  View Credential <ExternalLink size={12} />
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                <p className="text-sm text-gray-300 leading-snug">{a.text}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -3,7 +3,6 @@ import { Navbar } from "./components/Navbar";
 import { CustomCursor } from "./components/CustomCursor";
 import HeroSection from "./components/HeroSection";
 import { TechMarquee } from "./components/TechMarquee";
-import { ImpactNumbers } from "./components/ImpactNumbers";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
@@ -20,7 +19,8 @@ function CursorGlow() {
   useEffect(() => {
     const el = glowRef.current;
     if (!el) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches)
+      return;
     let raf: number;
     let cx = window.innerWidth / 2;
     let cy = window.innerHeight / 2;
@@ -61,7 +61,7 @@ export function App() {
         <HeroSection />
         <div className="sep" />
         <TechMarquee />
-        <ImpactNumbers />
+
         <div className="sep" />
         <AboutSection />
         <div className="sep" />
@@ -72,6 +72,7 @@ export function App() {
         <ExperienceSection />
         <div className="sep" />
         <CertificatesSection />
+     
         <div className="sep" />
         <WhyHireMe />
         <div className="sep" />

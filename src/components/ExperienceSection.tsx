@@ -3,9 +3,13 @@ import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
 const points = [
-  "Contributed to the development and deployment of web and mobile applications using React.js, Next.js, React Native, Node.js, and Express.js.",
-  "Implemented JWT-based authentication and worked across the complete development lifecycle — frontend, backend integration, and production optimization.",
-  "Deployed applications on AWS, containerized services with Docker, built CI/CD pipelines using GitHub Actions, and collaborated with cross-functional teams to deliver scalable applications.",
+  "Built and shipped features for both web and mobile applications using React.js, Next.js, React Native, Node.js, and Express.js — working across the full stack from UI to backend APIs.",
+  "Contributed directly to live, production-grade projects — writing, testing, and deploying code that real users interacted with, not just isolated demos or prototypes.",
+  "Implemented JWT-based authentication and secure REST APIs, handling session management, protected routes, and role-based access across both web and mobile clients.",
+  "Worked across the complete development lifecycle — frontend UI, backend integration, database design, and production optimization for performance and reliability.",
+  "Containerized services with Docker and deployed applications on AWS, ensuring consistent environments from local development through to production.",
+  "Built and maintained CI/CD pipelines using GitHub Actions to automate testing and deployment, reducing manual release effort and catching issues before they reached production.",
+  "Collaborated closely with cross-functional teams (design, backend, and product) in an agile workflow to plan, build, and ship scalable features on schedule.",
 ];
 
 export default function ExperienceSection() {
@@ -43,7 +47,7 @@ export default function ExperienceSection() {
                 Full Stack Developer Intern
               </h3>
               <p className="text-gray-400 text-sm mt-1">
-                Printonia LLC · Pune (Remote) · July 2025 – Present
+                Printonia soft · Pune (Remote) · July 2025 – Present
               </p>
             </div>
           </div>

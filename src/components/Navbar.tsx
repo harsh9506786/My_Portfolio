@@ -7,7 +7,7 @@ const links = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
-  { id: "certificates", label: "Certificates" },
+  { id: "certificates", label: "Achievements" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -32,7 +32,9 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 w-full z-[900] transition-all duration-300 ${
-        scrolled ? "bg-dark-900/80 backdrop-blur-md border-b border-white/5" : "bg-transparent"
+        scrolled
+          ? "bg-dark-900/80 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4">
@@ -99,7 +101,7 @@ export function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden overflow-hidden bg-dark-900/95 backdrop-blur-md border-b border-white/5"
+            className="lg:hidden overflow-hidden bg-dark-900/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
               {links.map((l) => (
@@ -112,8 +114,8 @@ export function Navbar() {
                 </button>
               ))}
               <a
-                href="/Harshvardhan_Sharma_Resume.pdf"
-                download="Harshvardhan_Sharma_Resume.pdf"
+                href="/HarshvardhanSharma_resume.pdf"
+                download="/HarshvardhanSharma_resume.pdf"
                 onClick={() => setOpen(false)}
                 className="btn-flame flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm w-full"
               >
@@ -122,7 +124,12 @@ export function Navbar() {
               </a>
 
               <div className="flex items-center gap-5 pt-2">
-                <a href="https://github.com/harsh9506786" target="_blank" rel="noreferrer" className="text-gray-300">
+                <a
+                  href="https://github.com/harsh9506786"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-gray-300"
+                >
                   <Github size={20} />
                 </a>
                 <a
