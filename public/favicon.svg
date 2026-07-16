@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#161616"/>
+      <stop offset="100%" stop-color="#0b0b0b"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffaa70"/>
+      <stop offset="55%" stop-color="#ff5a00"/>
+      <stop offset="100%" stop-color="#ff2e00"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="24" height="24" rx="5.5" fill="url(#bg)"/>
+
+  <text
+    x="9.4"
+    y="17.2"
+    font-family="Syne, Arial, sans-serif"
+    font-weight="800"
+    font-size="14.5"
+    fill="#ffffff"
+    text-anchor="middle"
+  >H</text>
+
+  <circle cx="17.3" cy="17.6" r="1.9" fill="url(#flame)"/>
+</svg>
