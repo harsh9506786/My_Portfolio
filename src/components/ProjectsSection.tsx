@@ -16,9 +16,47 @@ const projects = [
       "Gemini AI integration for personalized, filter-aware car recommendations",
       "Deployed on Vercel (frontend) + Railway (backend)",
     ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Cloudinary", "Gemini AI", "Railway", "Vercel"],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Cloudinary",
+      "Gemini AI",
+      "Railway",
+      "Vercel",
+    ],
     live: "https://car-rental-application-gray.vercel.app/",
     github: "https://github.com/harsh9506786",
+  },
+  {
+    title: "DocChat",
+    tagline: "RAG-Based PDF Q&A Assistant",
+    period: "07/2026",
+    status: "Live",
+    description:
+      "An end-to-end Retrieval-Augmented Generation (RAG) app — upload a PDF and ask questions about it, with answers grounded strictly in the document's content rather than the model's general knowledge, to minimize hallucination.",
+    highlights: [
+      "Full RAG pipeline: PDF parsing, text chunking, embedding generation, and cosine-similarity-based retrieval",
+      "Gemini API integration for embeddings (gemini-embedding-001) and grounded answer generation (gemini-2.5-flash)",
+      "Prompt engineering to constrain the model to answer only from retrieved context, reducing hallucination",
+      "Built with Node.js/Express backend and a React (Vite) chat interface showing matched source chunks",
+    ],
+    stack: [
+      "React",
+      "Vite",
+      "Node.js",
+      "Express.js",
+      "Gemini AI",
+      "RAG",
+      "Vector Search",
+    ],
+    live: null,
+    github: "https://github.com/harsh9506786/DocChat",
   },
   {
     title: "StoryVerse",
@@ -50,7 +88,15 @@ const projects = [
       "Employee dashboard with real-time task tracking — mark complete, delete, and filter by title",
       "Firestore for real-time data sync, built with Material UI + Tailwind CSS for a polished dashboard UI",
     ],
-    stack: ["React", "Vite", "Firebase Auth", "Firestore", "Material UI", "Tailwind CSS", "React Router"],
+    stack: [
+      "React",
+      "Vite",
+      "Firebase Auth",
+      "Firestore",
+      "Material UI",
+      "Tailwind CSS",
+      "React Router",
+    ],
     live: "https://uand-t-saa-s-system.vercel.app/",
     github: "https://github.com/harsh9506786",
   },
@@ -67,7 +113,13 @@ const projects = [
       "Dedicated Public Health vertical for vector-control products, with its own hero, context and strategy sections",
       "Enquiry and contact forms with Framer Motion micro-interactions for a polished, conversion-focused UI",
     ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React Icons"],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "React Icons",
+    ],
     live: "https://bio-tech-weld.vercel.app/",
     github: "https://github.com/harsh9506786/Bio-Tech",
   },
@@ -84,7 +136,17 @@ const projects = [
       "Deployed to an AWS EC2 instance, serving the production build directly",
       "Set up a CI/CD pipeline with GitHub Actions to automate builds and deployments on every push",
     ],
-    stack: ["React", "Vite", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Docker", "AWS EC2", "GitHub Actions"],
+    stack: [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Three.js",
+      "Docker",
+      "AWS EC2",
+      "GitHub Actions",
+    ],
     live: "https://www.agneeagency.com/",
     github: "https://github.com/harsh9506786",
   },
@@ -122,16 +184,22 @@ export default function ProjectsSection() {
               <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-6">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="font-syne font-800 text-2xl sm:text-3xl text-white">{p.title}</h3>
+                    <h3 className="font-syne font-800 text-2xl sm:text-3xl text-white">
+                      {p.title}
+                    </h3>
                     <span
                       className={`chip text-[0.65rem] ${
-                        p.status === "Live" ? "text-green-400 border-green-500/25 bg-green-500/5" : "text-flame-400 border-flame-500/25 bg-flame-500/5"
+                        p.status === "Live"
+                          ? "text-green-400 border-green-500/25 bg-green-500/5"
+                          : "text-flame-400 border-flame-500/25 bg-flame-500/5"
                       }`}
                     >
                       {p.status}
                     </span>
                   </div>
-                  <p className="text-gray-400 font-inter text-sm sm:text-base">{p.tagline} · {p.period}</p>
+                  <p className="text-gray-400 font-inter text-sm sm:text-base">
+                    {p.tagline} · {p.period}
+                  </p>
                 </div>
                 <div className="flex gap-3 shrink-0">
                   {p.live && (
@@ -155,11 +223,16 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              <p className="text-gray-400 leading-relaxed mb-6 max-w-3xl">{p.description}</p>
+              <p className="text-gray-400 leading-relaxed mb-6 max-w-3xl">
+                {p.description}
+              </p>
 
               <ul className="grid sm:grid-cols-2 gap-3 mb-7">
                 {p.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-2 text-sm text-gray-300">
+                  <li
+                    key={h}
+                    className="flex items-start gap-2 text-sm text-gray-300"
+                  >
                     <span className="text-flame-500 mt-1">▸</span>
                     <span>{h}</span>
                   </li>
@@ -168,7 +241,9 @@ export default function ProjectsSection() {
 
               <div className="flex flex-wrap gap-2">
                 {p.stack.map((s) => (
-                  <span key={s} className="chip text-[0.68rem]">{s}</span>
+                  <span key={s} className="chip text-[0.68rem]">
+                    {s}
+                  </span>
                 ))}
               </div>
             </motion.div>

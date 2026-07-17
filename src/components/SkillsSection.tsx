@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Layout, Server, Database, Cloud, Network, Terminal } from "lucide-react";
+import { Layout, Server, Database, Cloud, Network, Terminal, Sparkles } from "lucide-react";
 
 const groups = [
   {
@@ -12,6 +12,11 @@ const groups = [
     icon: Server,
     title: "Backend",
     items: ["Node.js", "Express.js", "REST APIs", "GraphQL", "Firebase"],
+  },
+  {
+    icon: Sparkles,
+    title: "AI / GenAI",
+    items: ["Gemini API", "RAG", "Embeddings", "Vector Search", "Prompt Engineering"],
   },
   {
     icon: Database,

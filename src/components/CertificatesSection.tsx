@@ -5,23 +5,23 @@ import { Award, Layout, Smartphone, Cloud, Network } from "lucide-react";
 const achievements = [
   {
     icon: Award,
-    text: "Active LeetCode practitioner — solved 100s of problems",
+    text: "Consistent competitive programmer — solved 150+ DSA problems on LeetCode, sharpening problem-solving speed and interview readiness",
   },
   {
     icon: Layout,
-    text: "Can build responsive, production-ready websites",
+    text: "Designs and builds pixel-perfect, fully responsive web interfaces with React and Next.js, optimized for performance across devices",
   },
   {
     icon: Smartphone,
-    text: "Ships scalable, cross-platform mobile apps",
+    text: "Ships production-ready, cross-platform mobile applications using React Native — from UI to backend integration",
   },
   {
     icon: Cloud,
-    text: "Builds, deploys and hosts apps on AWS with Docker + CI/CD",
+    text: "Owns the full deployment pipeline — containerizing apps with Docker, hosting on AWS EC2, and automating releases with GitHub Actions CI/CD",
   },
   {
     icon: Network,
-    text: "Applies System Design fundamentals — caching, load balancing, scalability",
+    text: "Applies core System Design principles — load balancing, caching, database sharding and replication — to architect systems that scale",
   },
 ];
 
