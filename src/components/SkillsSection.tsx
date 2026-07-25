@@ -55,7 +55,7 @@ export default function SkillsSection() {
             skills
           </p>
           <h2 className="font-syne font-800 text-3xl sm:text-4xl lg:text-5xl">
-            The full <span className="text-gradient-flame">stack</span>
+            The Full <span className="text-gradient-flame">Stack</span>
           </h2>
         </motion.div>
 

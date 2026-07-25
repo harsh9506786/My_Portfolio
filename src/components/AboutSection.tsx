@@ -54,7 +54,7 @@ export default function AboutSection() {
               <MapPin className="text-flame-400 shrink-0 mt-0.5" size={20} />
               <div>
                 <p className="text-sm text-white font-medium">Based in India</p>
-                <p className="text-xs text-gray-500 mt-0.5">Available remote / relocation-ready</p>
+                <p className="text-xs text-gray-500 mt-0.5">Open to Remote, Hybrid & Relocation</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-4 rounded-2xl border border-white/8 bg-white/[0.02] sm:col-span-2">

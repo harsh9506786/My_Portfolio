@@ -1,20 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 
-const projects = [
+interface CaseStudySection {
+  heading: string;
+  diagram?: string;
+  paragraphs: string[];
+}
+
+interface ExtraLink {
+  label: string;
+  url: string;
+}
+
+interface Project {
+  title: string;
+  tagline: string;
+  period: string;
+  status: string;
+  description: string;
+  highlights: string[];
+  stack: string[];
+  live: string | null;
+  github: string;
+  caseStudy?: CaseStudySection[];
+  extraLinks?: ExtraLink[];
+}
+const projects: Project[] = [
   {
     title: "DriveGo",
     tagline: "AI-Powered Car Rental Platform",
     period: "06/2026",
     status: "Live",
     description:
-      "A full-stack car rental platform with role-based access, vehicle management, and booking — plus a Gemini AI-powered assistant that gives users personalized car recommendations based on natural-language filters.",
+      "A full-stack car rental platform with role-based access, vehicle management, and booking — plus a Gemini AI-powered assistant that gives users personalized car recommendations based on natural-language filters. Beyond the app itself, I containerized and deployed it end-to-end on AWS with a fully automated CI/CD pipeline.",
     highlights: [
       "Role-based access, vehicle management & booking flow built on Next.js + Express.js",
       "JWT authentication and REST APIs across a Next.js frontend and Node.js backend",
       "Gemini AI integration for personalized, filter-aware car recommendations",
-      "Deployed on Vercel (frontend) + Railway (backend)",
+      "Containerized with Docker (multi-stage builds) and deployed on AWS EC2 behind an Nginx reverse proxy",
+      "Custom domain with free SSL (Let's Encrypt) for HTTPS, and a GitHub Actions CI/CD pipeline for fully automated deployments",
+      "Also deployed on Vercel (frontend) + Railway (backend) for quick access",
     ],
     stack: [
       "Next.js",
@@ -27,12 +53,56 @@ const projects = [
       "JWT",
       "Cloudinary",
       "Gemini AI",
+      "Docker",
+      "AWS EC2",
+      "Nginx",
+      "GitHub Actions",
       "Railway",
       "Vercel",
     ],
     live: "https://car-rental-application-gray.vercel.app/",
     github: "https://github.com/harsh9506786",
+    caseStudy: [
+      {
+        heading: "Architecture Overview",
+        diagram: `Browser (HTTPS)
+      │
+      ▼
+Nginx Reverse Proxy (Docker, ports 80/443)
+      │
+      ├──► /            → Frontend (Next.js, port 3000)
+      └──► /api/*        → Backend (Express.js, port 5000)
+                                  │
+                                  ▼
+                           MongoDB Atlas (cloud)`,
+        paragraphs: [
+          "DriveGo runs as three Docker containers orchestrated with Docker Compose on a single AWS EC2 instance: a Next.js frontend, an Express.js backend, and an Nginx reverse proxy. Nginx is the only container exposed to the internet — it terminates SSL and routes requests based on path, while the backend and frontend stay on an internal Docker network, invisible from outside.",
+        ],
+      },
+      {
+        heading: "Deployment Journey",
+        paragraphs: [
+          "Wrote multi-stage Dockerfiles for both frontend and backend to keep production images lean. The frontend's NEXT_PUBLIC_* environment variables are baked in at build time via Docker ARG, meaning the API URL had to be finalized before building, not just set at runtime.",
+          "Deployed to a t3.micro EC2 instance (1GB RAM). The Next.js production build turned out to be memory-hungry enough to make the instance unresponsive mid-build. Diagnosed this with `top` and `free -h`, added a 2GB swap file as a stopgap, and eventually moved frontend builds to my local machine — building locally, transferring the image via `scp`, and loading it on the server with `docker load`.",
+          "Configured Nginx to terminate all public traffic on one entry point, forwarding `/api/*` to the backend and everything else to the frontend — hiding the backend from direct public access.",
+          "Replaced the manual save/transfer/load workflow with a GitHub Actions pipeline: on every push to main, it builds both images on GitHub's runners, pushes them to Docker Hub, then SSHes into EC2 to pull the new images and restart containers — fully automated.",
+          "Pointed a DuckDNS subdomain at the EC2 instance's Elastic IP, then used Certbot to issue a free Let's Encrypt SSL certificate, updating the Nginx config to terminate HTTPS and redirect HTTP traffic.",
+        ],
+      },
+      {
+        heading: "Challenges Solved",
+        paragraphs: [
+          "CORS across multiple origins: as the app moved between localhost, a raw EC2 IP, a DuckDNS domain, and eventually HTTPS, each change introduced a new origin the backend's CORS config had to explicitly allow.",
+          "Configuration drift between manual and automated deployment: after CI/CD reported success, the live site kept serving stale code. The cause — images built by CI/CD were tagged with a Docker Hub namespace (username/image:latest), while the server's docker-compose.yml still referenced the old, un-namespaced tag from manual deployment days. Docker Compose matched the old tag to an existing local image instead of the freshly pulled one.",
+          "Memory-constrained builds on a t3.micro: a production Next.js build maxed out the 1GB instance. Solved short-term with a swap file, and properly by moving builds off the constrained instance — first to local, then to GitHub Actions' runners.",
+        ],
+      },
+    ],
+    extraLinks: [
+      { label: "AWS Deployment (Docker + Nginx + HTTPS)", url: "https://drivego-app.duckdns.org" },
+    ],
   },
+
   {
     title: "DocChat",
     tagline: "RAG-Based PDF Q&A Assistant",
@@ -73,7 +143,7 @@ const projects = [
     ],
     stack: ["React Native", "Expo Router", "Node.js", "Express.js", "MongoDB"],
     live: null,
-    github: "https://github.com/harsh9506786",
+    github: "https://github.com/harsh9506786/Story-App",
   },
   {
     title: "User & Task Manager",
@@ -98,7 +168,7 @@ const projects = [
       "React Router",
     ],
     live: "https://uand-t-saa-s-system.vercel.app/",
-    github: "https://github.com/harsh9506786",
+    github: "https://github.com/harsh9506786/UandT-SaaS-system",
   },
   {
     title: "BioTech",
@@ -148,7 +218,7 @@ const projects = [
       "GitHub Actions",
     ],
     live: "https://www.agneeagency.com/",
-    github: "https://github.com/harsh9506786",
+    github: "https://github.com/harsh9506786/agnee-web1",
   },
 ];
 
