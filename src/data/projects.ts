@@ -25,6 +25,7 @@ export interface Project {
   qrCode?: string;
   qrCaption?: string;
   demoVideo?: string;
+  demoVideoPoster?: string;
 }
 
 export const projects: Project[] = [
@@ -153,8 +154,10 @@ Nginx Reverse Proxy (Docker, ports 80/443)
         ],
       },
     ],
-   
-    demoVideo: "/videos/Shrutika.mp4",
+    demoVideo:
+      "https://res.cloudinary.com/nlszpkhg/video/upload/f_auto,q_auto,w_720/v1785584997/Shrutika_eceapd.mp4",
+    demoVideoPoster:
+      "https://res.cloudinary.com/nlszpkhg/video/upload/f_auto,q_auto,w_720/v1785584997/Shrutika_eceapd.jpg",
   },
   {
     title: "DocChat",
