@@ -112,7 +112,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
     title: "StoryVerse",
     tagline: "Cross-Platform Story Reading & Writing App",
     period: "06/2026 – Current",
-    status: "In Progress",
+    status: "Beta",
     description:
       "A React Native (Expo) app where users can read stories across genres, publish their own, and bookmark favorites — built for a smooth, native-feeling experience across Android and iOS, with a Node.js/Express backend handling auth, content and search.",
     highlights: [
@@ -120,8 +120,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Firebase Authentication with AsyncStorage persistence, story publishing, bookmarks, and a debounced Search screen with genre-based discovery",
       "Node.js/Express backend with MongoDB, including a dedicated search endpoint for content discovery",
       "Resolved a Hermes/Babel compatibility conflict between react-native-reanimated v4 and NativeWind (which required v3), pinning versions to keep both working together",
-      "Published live preview builds via EAS Update for quick cross-platform testing without app store review delays",
-      "Ongoing improvements to navigation, state management, and performance as the app scales",
+      "Conducted a full performance optimization pass across screens and media loading, and built a dedicated backend search endpoint for genre-based content discovery",
     ],
     stack: [
       "React Native",
