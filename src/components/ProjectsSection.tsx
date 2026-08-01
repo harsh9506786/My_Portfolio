@@ -1,11 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import CaseStudyModal from "./CaseStudyModal";
 import { projects, Project } from "../data/projects";
 
+// Converts a project title into a URL-friendly slug, e.g. "StoryVerse" -> "storyverse"
+function slugify(title: string) {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Auto-open a project's case study if the URL has ?project=<slug>
+  // e.g. https://yourportfolio.vercel.app/?project=storyverse
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const projectSlug = params.get("project");
+    if (!projectSlug) return;
+
+    const match = projects.find(
+      (p) => slugify(p.title) === slugify(projectSlug)
+    );
+
+    if (match && match.caseStudy) {
+      setSelectedProject(match);
+
+      // Scroll the projects section into view so the modal opens in context
+      const section = document.getElementById("projects");
+      section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
 
   return (
     <section id="projects" className="py-20 sm:py-28 px-5 sm:px-8">

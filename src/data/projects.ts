@@ -114,7 +114,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
     period: "06/2026 – Current",
     status: "In Progress",
     description:
-      "A React Native (Expo) app for reading and publishing stories, built for a smooth, native-feeling experience across Android and iOS — with a Node.js/Express backend handling auth, content and search.",
+      "A React Native (Expo) app where users can read stories across genres, publish their own, and bookmark favorites — built for a smooth, native-feeling experience across Android and iOS, with a Node.js/Express backend handling auth, content and search.",
     highlights: [
       "Cross-platform mobile app built with React Native (Expo) + Expo Router, targeting a native-feeling experience on both Android and iOS",
       "Firebase Authentication with AsyncStorage persistence, story publishing, bookmarks, and a debounced Search screen with genre-based discovery",
@@ -140,6 +140,19 @@ Nginx Reverse Proxy (Docker, ports 80/443)
     caseStudy: [
       {
         heading: "Architecture Overview",
+        diagram: `React Native App (Expo Router)
+      │
+      ├──► Firebase Auth ──► AsyncStorage (session persistence)
+      │
+      ▼
+Express.js REST API (Node.js)
+      │
+      ├──► /stories        → Feed, publish, bookmarks
+      ├──► /search          → Debounced genre & keyword search
+      └──► /users            → Author profiles
+                                  │
+                                  ▼
+                           MongoDB (content, users, search index)`,
         paragraphs: [
           "StoryVerse is a cross-platform mobile app built with React Native and Expo Router, using file-based routing for screens like story feeds, author profiles, search, and bookmarks. Firebase handles authentication with AsyncStorage persistence, while a Node.js/Express backend serves content, search results, and user data from MongoDB.",
         ],
