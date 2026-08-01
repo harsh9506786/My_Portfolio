@@ -24,7 +24,7 @@ export interface Project {
   note?: string;
   qrCode?: string;
   qrCaption?: string;
-  demoVideo?: boolean;
+  demoVideo?: string;
 }
 
 export const projects: Project[] = [
@@ -122,7 +122,8 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Published live preview builds via EAS Update for quick cross-platform testing without app store review delays",
       "Ongoing improvements to navigation, state management, and performance as the app scales",
     ],
-    stack: ["React Native",
+    stack: [
+      "React Native",
       "Expo Router",
       "TypeScript",
       "Node.js",
@@ -131,7 +132,8 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Firebase Auth",
       "AsyncStorage",
       "Reanimated",
-      "NativeWind"],
+      "NativeWind",
+    ],
     live: null,
     github: "https://github.com/harsh9506786/Story-App",
     caseStudy: [
@@ -151,16 +153,8 @@ Nginx Reverse Proxy (Docker, ports 80/443)
         ],
       },
     ],
-    extraLinks: [
-      {
-        label: "Expo Update Details",
-        url: "https://expo.dev/preview/update?message=Portfolio+demo+release&updateRuntimeVersion=1.0.0&createdAt=2026-07-26T05%3A33%3A58.663Z&slug=exp&projectId=27203c9d-6e92-487d-9e68-83a6a0b5a494&group=90a46fab-4bb0-4a50-930b-af1b51067cc0",
-      },
-    ],
-    demoVideo: true,
-    qrCode: "/storyVerse-qr.svg",
-    qrCaption:
-      "Scan with the Expo Go app (available on Play Store/App Store) to preview StoryVerse on your phone",
+   
+    demoVideo: "/videos/Shrutika.mp4",
   },
   {
     title: "DocChat",

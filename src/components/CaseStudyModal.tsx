@@ -1,13 +1,107 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, PlayCircle } from "lucide-react";
 import { Project } from "../data/projects";
-
-
 
 interface CaseStudyModalProps {
   project: Project | null;
   onClose: () => void;
+}
+
+function LazyVideo({ src, title }: { src: string; title: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  // Load the video source once it's near the viewport
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto play only the first time the video comes into view.
+  // Once paused (by scrolling away), it won't auto-resume — user taps play manually.
+  useEffect(() => {
+    if (!shouldLoad) return;
+    const el = containerRef.current;
+    const videoEl = videoRef.current;
+    if (!el || !videoEl) return;
+
+    let hasAutoPlayed = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (!hasAutoPlayed) {
+            hasAutoPlayed = true;
+            videoEl.play().catch(() => {
+              // Autoplay can be blocked in some cases; user can tap play manually
+            });
+          }
+        } else {
+          videoEl.pause();
+        }
+      },
+      { threshold: [0, 0.5] },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
+
+  return (
+    <div className="flex flex-col items-center py-6 border-t border-white/8">
+      <div className="flex items-center gap-2 mb-5">
+        <PlayCircle size={16} className="text-flame-400" />
+        <h4 className="text-flame-400 font-syne font-700 text-sm uppercase tracking-wider">
+          Project Demo
+        </h4>
+      </div>
+
+      {/* Phone-frame styled container for mobile screen recording */}
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[280px] aspect-[9/19.5] rounded-[2rem] border-[6px] border-white/10 bg-black overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+      >
+        {/* Notch detail for realism */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-b-xl z-10" />
+
+        {shouldLoad ? (
+          <video
+            ref={videoRef}
+            src={src}
+            controls
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover bg-black"
+            aria-label={`Demo video for ${title}`}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <p className="text-gray-500 text-xs italic px-6 text-center">
+              🎥 Loading demo preview…
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default function CaseStudyModal({
@@ -16,13 +110,13 @@ export default function CaseStudyModal({
 }: CaseStudyModalProps) {
   if (!project || !project.caseStudy) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
+        className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-0 sm:p-8"
         onClick={onClose}
       >
         <motion.div
@@ -31,7 +125,7 @@ export default function CaseStudyModal({
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.25 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-white/10 bg-[#0b0b0f] p-7 sm:p-10"
+          className="relative w-full h-full sm:h-auto max-w-3xl sm:max-h-[90vh] overflow-y-auto rounded-none sm:rounded-3xl border-0 sm:border sm:border-white/10 bg-[#0b0b0f] p-6 sm:p-10"
         >
           <button
             onClick={onClose}
@@ -85,26 +179,9 @@ export default function CaseStudyModal({
               ))}
             </div>
           )}
-        {project.demoVideo && (
-            <div className="rounded-xl border border-white/8 bg-white/[0.02] p-8 text-center mb-5">
-              <p className="text-gray-500 text-sm italic">
-                🎥 Demo video coming soon
-              </p>
-            </div>
-          )}
 
-          {project.qrCode && (
-            <div className="flex flex-col items-center gap-3 py-6 border-t border-white/8">
-              <img
-                src={project.qrCode}
-                alt={`Scan to preview ${project.title} on Expo Go`}
-                className="w-40 h-40 bg-white rounded-xl p-2"
-              />
-              <p className="text-xs text-gray-400 text-center max-w-xs">
-                {project.qrCaption ||
-                  "Scan with the Expo Go app to preview this app on your phone"}
-              </p>
-            </div>
+          {project.demoVideo && (
+            <LazyVideo src={project.demoVideo} title={project.title} />
           )}
 
           {project.note && (
@@ -114,6 +191,7 @@ export default function CaseStudyModal({
           )}
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
