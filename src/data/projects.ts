@@ -111,7 +111,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
   {
     title: "StoryVerse",
     tagline: "Cross-Platform Story Reading & Writing App",
-    period: "06/2026 – Current",
+    period: "06/2026 - 07/2026",
     status: "Beta",
     description:
       "A React Native (Expo) app where users can read stories across genres, publish their own, and bookmark favorites — built for a smooth, native-feeling experience across Android and iOS, with a Node.js/Express backend handling auth, content and search.",
