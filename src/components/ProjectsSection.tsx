@@ -4,7 +4,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 import CaseStudyModal from "./CaseStudyModal";
 import { projects, Project } from "../data/projects";
 
-// Converts a project title into a URL-friendly slug, e.g. "StoryVerse" -> "storyverse"
+// Converts a project title into a URL-friendly slug, e.g. "Shrutika" -> "shrutika"
 function slugify(title: string) {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, "");
 }
@@ -13,7 +13,7 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Auto-open a project's case study if the URL has ?project=<slug>
-  // e.g. https://yourportfolio.vercel.app/?project=storyverse
+  // e.g. https://yourportfolio.vercel.app/?project=StoryVerse
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const projectSlug = params.get("project");

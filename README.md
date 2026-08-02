@@ -43,5 +43,5 @@ a few clicks. On Vercel: import the repo, framework preset "Vite", done.
 
 ## Sections
 
-Hero → Tech Stack Marquee → Impact Numbers → About → Skills → Projects (DriveGo, StoryVerse) →
+Hero → Tech Stack Marquee → Impact Numbers → About → Skills → Projects (DriveGo, Shrutika) →
 Experience → Why Hire Me → Final CTA → Contact → Footer

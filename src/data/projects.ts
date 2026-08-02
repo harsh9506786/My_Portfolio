@@ -109,7 +109,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
     note: "The AWS instance isn't kept running 24/7 to avoid unnecessary billing — happy to spin it up live during a call.",
   },
   {
-    title: "StoryVerse",
+    title: "Shrutika",
     tagline: "Cross-Platform Story Reading & Writing App",
     period: "06/2026 – Current",
     status: "Live (APK)",
@@ -121,6 +121,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Node.js/Express backend with MongoDB, including a dedicated search endpoint for content discovery",
       "Resolved a Hermes/Babel compatibility conflict between react-native-reanimated v4 and NativeWind (which required v3), pinning versions to keep both working together",
       "Conducted a full performance optimization pass across screens and media loading, and built a dedicated backend search endpoint for genre-based content discovery",
+      "Deployed the backend on Render and distributed the app as a standalone Android APK via EAS Build — fully installable and functional end-to-end",
     ],
     stack: [
       "React Native",
@@ -134,8 +135,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Reanimated",
       "NativeWind",
     ],
-    live: "https://expo.dev/artifacts/eas/KjKwkJQ3NrCYGIshRhtKjnJ53uD-EWK0L8Vtaog_Ang.apk"
-    , 
+    live: "https://expo.dev/artifacts/eas/KjKwkJQ3NrCYGIshRhtKjnJ53uD-EWK0L8Vtaog_Ang.apk",
     github: "https://github.com/harsh9506786/Story-App",
     caseStudy: [
       {
@@ -154,7 +154,7 @@ Express.js REST API (Node.js)
                                   ▼
                            MongoDB (content, users, search index)`,
         paragraphs: [
-          "StoryVerse is a cross-platform mobile app built with React Native and Expo Router, using file-based routing for screens like story feeds, author profiles, search, and bookmarks. Firebase handles authentication with AsyncStorage persistence, while a Node.js/Express backend serves content, search results, and user data from MongoDB.",
+          "Shrutika is a cross-platform mobile app built with React Native and Expo Router, using file-based routing for screens like story feeds, author profiles, search, and bookmarks. Firebase handles authentication with AsyncStorage persistence, while a Node.js/Express backend serves content, search results, and user data from MongoDB.",
         ],
       },
       {
