@@ -111,8 +111,8 @@ Nginx Reverse Proxy (Docker, ports 80/443)
   {
     title: "StoryVerse",
     tagline: "Cross-Platform Story Reading & Writing App",
-    period: "06/2026 - 07/2026",
-    status: "Beta",
+    period: "06/2026 – Current",
+    status: "Live (APK)",
     description:
       "A React Native (Expo) app where users can read stories across genres, publish their own, and bookmark favorites — built for a smooth, native-feeling experience across Android and iOS, with a Node.js/Express backend handling auth, content and search.",
     highlights: [
@@ -134,7 +134,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Reanimated",
       "NativeWind",
     ],
-    live: null,
+    live: "https://expo.dev/accounts/harshvardhan72250/projects/storyVerse/builds/ec91ce67-337b-4a45-9420-7fe9704fb001",
     github: "https://github.com/harsh9506786/Story-App",
     caseStudy: [
       {
@@ -163,6 +163,14 @@ Express.js REST API (Node.js)
           "Set up Firebase Authentication with AsyncStorage persistence so users stay logged in across app restarts.",
           "Built a full Search screen with debounced API calls to avoid firing a request on every keystroke, and wired Explore genre cards to pre-filled search queries for a smoother discovery flow.",
           "Added a dedicated backend search endpoint and continued iterating on navigation, state management, and performance as the app has grown.",
+        ],
+      },
+      {
+        heading: "Deployment",
+        paragraphs: [
+          "The Express.js backend is deployed on Render, connected to MongoDB Atlas, with a lightweight /health endpoint and a scheduled keep-alive ping to prevent cold starts on the free tier from delaying requests.",
+          "The React Native frontend is built and distributed as a standalone Android APK via EAS Build — a production-signed build that talks directly to the deployed Render backend, installable on any Android device without going through Expo Go or the Play Store.",
+          "Environment-aware API configuration automatically switches between a local IP in development and the live Render URL in production builds, so the same codebase works seamlessly across local testing and the distributed APK.",
         ],
       },
     ],
