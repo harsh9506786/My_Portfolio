@@ -134,7 +134,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Reanimated",
       "NativeWind",
     ],
-    live: "https://expo.dev/artifacts/eas/6qgDqnyrAJNqCK3SQaOfRPcKIjZ2DgjIn4rzldS-iMs.apk"
+    live: "https://expo.dev/artifacts/eas/KjKwkJQ3NrCYGIshRhtKjnJ53uD-EWK0L8Vtaog_Ang.apk"
     , 
     github: "https://github.com/harsh9506786/Story-App",
     caseStudy: [
