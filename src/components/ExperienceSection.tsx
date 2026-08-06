@@ -47,7 +47,7 @@ export default function ExperienceSection() {
                 Full Stack Developer Intern
               </h3>
               <p className="text-gray-400 text-sm mt-1">
-                Printonia soft · Pune (Remote) · July 2025 – Present
+                Printonia soft · Pune (Remote) · July 2025 – July 2026
               </p>
             </div>
           </div>
