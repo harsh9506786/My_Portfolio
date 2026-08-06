@@ -77,8 +77,8 @@ export function Navbar() {
             <Linkedin size={19} />
           </a>
           <a
-            href="/HarshvardhanSharma_resume.pdf"
-            download="HarshvardhanSharma_resume.pdf"
+            href="/HarshvardhanSharma_cv.pdf"
+            download="HarshvardhanSharma_cv.pdf"
             className="btn-flame flex items-center gap-2 px-5 py-2.5 rounded-full text-sm"
           >
             <Download size={15} />
