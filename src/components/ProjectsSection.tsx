@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
+import { FaArrowUpRightFromSquare, FaGithub } from "react-icons/fa6";
 import CaseStudyModal from "./CaseStudyModal";
 import { projects, Project } from "../data/projects";
 
@@ -20,7 +20,7 @@ export default function ProjectsSection() {
     if (!projectSlug) return;
 
     const match = projects.find(
-      (p) => slugify(p.title) === slugify(projectSlug)
+      (p) => slugify(p.title) === slugify(projectSlug),
     );
 
     if (match && match.caseStudy) {
@@ -88,7 +88,7 @@ export default function ProjectsSection() {
                       rel="noreferrer"
                       className="btn-flame inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm"
                     >
-                      Live Demo <ArrowUpRight size={15} />
+                      Live Demo <FaArrowUpRightFromSquare size={15} />
                     </a>
                   )}
 
@@ -98,7 +98,7 @@ export default function ProjectsSection() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm border border-white/12 text-gray-300 hover:text-flame-400 hover:border-flame-500/30 transition-colors"
                   >
-                    <Github size={15} /> Code
+                    <FaGithub size={15} /> Code
                   </a>
                 </div>
               </div>

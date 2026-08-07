@@ -60,7 +60,7 @@ export default function AboutSection() {
             <div className="flex items-start gap-3 p-4 rounded-2xl border border-white/8 bg-white/[0.02] sm:col-span-2">
               <Code2 className="text-flame-400 shrink-0 mt-0.5" size={20} />
               <div>
-                <p className="text-sm text-white font-medium">Currently: Full Stack Developer Intern @ Printonia LLC</p>
+                <p className="text-sm text-white font-medium">Currently: Full Stack Developer Intern @ Printonia soft</p>
                 <p className="text-xs text-gray-500 mt-0.5">Remote · July 2025 – Present</p>
               </div>
             </div>

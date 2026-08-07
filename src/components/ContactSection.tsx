@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Github, Linkedin, Send, Check, Loader2 } from "lucide-react";
+import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaPaperPlane, FaCheck, FaSpinner } from "react-icons/fa6";
 
 // Sign up at https://formspree.io (free), create a form, and paste your endpoint below.
 // It looks like: https://formspree.io/f/xxxxabcd
@@ -53,25 +53,25 @@ export default function ContactSection() {
           <div className="space-y-4">
             <a href="mailto:sharmaharshvardhan2805@gmail.com" className="flex items-center gap-3 text-gray-300 hover:text-flame-400 transition-colors">
               <span className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/8 flex items-center justify-center">
-                <Mail size={17} />
+                <FaEnvelope size={17} />
               </span>
               sharmaharshvardhan2805@gmail.com
             </a>
             <a href="tel:7225037332" className="flex items-center gap-3 text-gray-300 hover:text-flame-400 transition-colors">
               <span className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/8 flex items-center justify-center">
-                <Phone size={17} />
+                <FaPhone size={17} />
               </span>
               +91 72250 37332
             </a>
             <a href="https://github.com/harsh9506786" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-gray-300 hover:text-flame-400 transition-colors">
               <span className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/8 flex items-center justify-center">
-                <Github size={17} />
+                <FaGithub size={17} />
               </span>
               github.com/harsh9506786
             </a>
             <a href="https://www.linkedin.com/in/harshvardhan-sharma-9782a7189" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-gray-300 hover:text-flame-400 transition-colors">
               <span className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/8 flex items-center justify-center">
-                <Linkedin size={17} />
+                <FaLinkedin size={17} />
               </span>
               linkedin.com/in/harshvardhan-sharma
             </a>
@@ -127,22 +127,22 @@ export default function ContactSection() {
           >
             {status === "sending" && (
               <>
-                <Loader2 size={16} className="animate-spin" /> Sending...
+                <FaSpinner size={16} className="animate-spin" /> Sending...
               </>
             )}
             {status === "sent" && (
               <>
-                <Check size={16} /> Message sent!
+                <FaCheck size={16} /> Message sent!
               </>
             )}
             {status === "error" && (
               <>
-                <Send size={16} /> Couldn't send — try again
+                <FaPaperPlane size={16} /> Couldn't send — try again
               </>
             )}
             {status === "idle" && (
               <>
-                <Send size={16} /> Send Message
+                <FaPaperPlane size={16} /> Send Message
               </>
             )}
           </motion.button>

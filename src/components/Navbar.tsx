@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github, Linkedin, Download } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 
 const links = [
   { id: "about", label: "About" },
@@ -42,7 +43,7 @@ export function Navbar() {
           onClick={() => scrollTo("hero")}
           className="font-syne font-800 text-xl tracking-tighter text-white"
         >
-          Harshvardhan<span className="text-flame-500">.</span>
+          Harshvardhan Sharma
         </button>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -65,7 +66,7 @@ export function Navbar() {
             className="text-gray-300 hover:text-flame-400 transition-colors"
             aria-label="GitHub"
           >
-            <Github size={19} />
+            <FaGithub size={19} />
           </a>
           <a
             href="https://www.linkedin.com/in/harshvardhan-sharma-9782a7189"
@@ -74,7 +75,7 @@ export function Navbar() {
             className="text-gray-300 hover:text-flame-400 transition-colors"
             aria-label="LinkedIn"
           >
-            <Linkedin size={19} />
+            <FaLinkedin size={19} />
           </a>
           <a
             href="/HarshvardhanSharma_cv.pdf"
@@ -130,7 +131,7 @@ export function Navbar() {
                   rel="noreferrer"
                   className="text-gray-300"
                 >
-                  <Github size={20} />
+                  <FaGithub size={20} />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/harshvardhan-sharma-9782a7189"
@@ -138,7 +139,7 @@ export function Navbar() {
                   rel="noreferrer"
                   className="text-gray-300"
                 >
-                  <Linkedin size={20} />
+                  <FaLinkedin size={20} />
                 </a>
               </div>
             </div>

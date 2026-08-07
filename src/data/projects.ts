@@ -121,7 +121,7 @@ Nginx Reverse Proxy (Docker, ports 80/443)
       "Node.js/Express backend with MongoDB, including a dedicated search endpoint for content discovery",
       "Resolved a Hermes/Babel compatibility conflict between react-native-reanimated v4 and NativeWind (which required v3), pinning versions to keep both working together",
       "Conducted a full performance optimization pass across screens and media loading, and built a dedicated backend search endpoint for genre-based content discovery",
-      "Deployed the backend on Render and distributed the app as a standalone Android APK via EAS Build — fully installable and functional end-to-end",
+      "Deployed the backend on Render and distributed the app as a standalone Android APK built locally via Gradle (./gradlew assembleRelease), published on GitHub Releases — fully installable and functional end-to-end",
     ],
     stack: [
       "React Native",
@@ -170,7 +170,7 @@ Express.js REST API (Node.js)
         heading: "Deployment",
         paragraphs: [
           "The Express.js backend is deployed on Render, connected to MongoDB Atlas, with a lightweight /health endpoint and a scheduled keep-alive ping to prevent cold starts on the free tier from delaying requests.",
-          "The React Native frontend is built and distributed as a standalone Android APK via EAS Build — a production-signed build that talks directly to the deployed Render backend, installable on any Android device without going through Expo Go or the Play Store.",
+          "The React Native frontend is built as a standalone Android APK using a local Gradle build (./gradlew assembleRelease) after EAS Build's free tier was exhausted — a production-signed build (via a locally generated release keystore) that talks directly to the deployed Render backend, published on GitHub Releases and installable on any Android device without going through Expo Go or the Play Store.",
           "Environment-aware API configuration automatically switches between a local IP in development and the live Render URL in production builds, so the same codebase works seamlessly across local testing and the distributed APK.",
         ],
       },
@@ -250,7 +250,7 @@ Express.js REST API (Node.js)
       "Framer Motion",
       "React Icons",
     ],
-    live: "https://bio-tech-weld.vercel.app/",
+    live: "https://bio-tech-xgye.vercel.app/",
     github: "https://github.com/harsh9506786/Bio-Tech",
   },
   {

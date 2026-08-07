@@ -1,5 +1,6 @@
 import React from "react";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -13,10 +14,10 @@ export default function Footer() {
         </p>
         <div className="flex items-center gap-4 order-2 sm:order-3">
           <a href="https://github.com/harsh9506786" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-flame-400 transition-colors">
-            <Github size={18} />
+            <FaGithub size={18} />
           </a>
           <a href="https://www.linkedin.com/in/harshvardhan-sharma-9782a7189" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-flame-400 transition-colors">
-            <Linkedin size={18} />
+            <FaLinkedin size={18} />
           </a>
           <a href="mailto:sharmaharshvardhan2805@gmail.com" className="text-gray-400 hover:text-flame-400 transition-colors">
             <Mail size={18} />

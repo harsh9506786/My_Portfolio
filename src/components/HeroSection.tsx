@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Download, Mail } from "lucide-react";
+import { FaArrowDown, FaEnvelope } from "react-icons/fa6";
 
 function HeroSection() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -58,8 +58,8 @@ function HeroSection() {
         new THREE.Vector3(
           r * Math.sin(phi) * Math.cos(theta),
           r * Math.sin(phi) * Math.sin(theta),
-          r * Math.cos(phi)
-        )
+          r * Math.cos(phi),
+        ),
       );
     }
     const linePositions: number[] = [];
@@ -68,33 +68,68 @@ function HeroSection() {
         const dist = neuralPoints[i].distanceTo(neuralPoints[j]);
         if (dist < 0.8) {
           linePositions.push(
-            neuralPoints[i].x, neuralPoints[i].y, neuralPoints[i].z,
-            neuralPoints[j].x, neuralPoints[j].y, neuralPoints[j].z
+            neuralPoints[i].x,
+            neuralPoints[i].y,
+            neuralPoints[i].z,
+            neuralPoints[j].x,
+            neuralPoints[j].y,
+            neuralPoints[j].z,
           );
         }
       }
     }
     const lineGeo = new THREE.BufferGeometry();
-    lineGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
-    const lineMat = new THREE.LineBasicMaterial({ color: 0xff8c00, transparent: true, opacity: 0.25 });
+    lineGeo.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(linePositions, 3),
+    );
+    const lineMat = new THREE.LineBasicMaterial({
+      color: 0xff8c00,
+      transparent: true,
+      opacity: 0.25,
+    });
     group.add(new THREE.LineSegments(lineGeo, lineMat));
 
     const nodeGeo = new THREE.BufferGeometry();
-    const nodePositions = new Float32Array(neuralPoints.flatMap((p) => [p.x, p.y, p.z]));
-    nodeGeo.setAttribute("position", new THREE.Float32BufferAttribute(nodePositions, 3));
-    const nodeMat = new THREE.PointsMaterial({ color: 0xff9500, size: 0.025, transparent: true, opacity: 0.8 });
+    const nodePositions = new Float32Array(
+      neuralPoints.flatMap((p) => [p.x, p.y, p.z]),
+    );
+    nodeGeo.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(nodePositions, 3),
+    );
+    const nodeMat = new THREE.PointsMaterial({
+      color: 0xff9500,
+      size: 0.025,
+      transparent: true,
+      opacity: 0.8,
+    });
     group.add(new THREE.Points(nodeGeo, nodeMat));
 
     // ===== ORBIT RINGS =====
     const ringConfigs = [
       { radius: 1.9, tube: 0.007, rot: [Math.PI / 2, 0, 0], speed: 0.003 },
-      { radius: 2.2, tube: 0.005, rot: [Math.PI / 4, Math.PI / 6, 0], speed: -0.002 },
-      { radius: 2.5, tube: 0.004, rot: [0, Math.PI / 3, Math.PI / 5], speed: 0.0015 },
+      {
+        radius: 2.2,
+        tube: 0.005,
+        rot: [Math.PI / 4, Math.PI / 6, 0],
+        speed: -0.002,
+      },
+      {
+        radius: 2.5,
+        tube: 0.004,
+        rot: [0, Math.PI / 3, Math.PI / 5],
+        speed: 0.0015,
+      },
     ];
     const rings: { mesh: THREE.Mesh; speed: number }[] = [];
     ringConfigs.forEach(({ radius, tube, rot, speed }) => {
       const geo = new THREE.TorusGeometry(radius, tube, 8, 120);
-      const mat = new THREE.MeshBasicMaterial({ color: 0xff6b00, transparent: true, opacity: 0.45 });
+      const mat = new THREE.MeshBasicMaterial({
+        color: 0xff6b00,
+        transparent: true,
+        opacity: 0.45,
+      });
       const ring = new THREE.Mesh(geo, mat);
       ring.rotation.set(rot[0], rot[1], rot[2]);
       group.add(ring);
@@ -113,13 +148,25 @@ function HeroSection() {
       particlePositions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       particlePositions[i * 3 + 2] = r * Math.cos(phi);
       const dir = new THREE.Vector3(
-        particlePositions[i * 3], particlePositions[i * 3 + 1], particlePositions[i * 3 + 2]
+        particlePositions[i * 3],
+        particlePositions[i * 3 + 1],
+        particlePositions[i * 3 + 2],
       ).normalize();
-      particleVelocities.push(dir.multiplyScalar(0.0015 + Math.random() * 0.0025));
+      particleVelocities.push(
+        dir.multiplyScalar(0.0015 + Math.random() * 0.0025),
+      );
     }
     const particleGeo = new THREE.BufferGeometry();
-    particleGeo.setAttribute("position", new THREE.Float32BufferAttribute(particlePositions, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0xff9500, size: 0.016, transparent: true, opacity: 0.6 });
+    particleGeo.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(particlePositions, 3),
+    );
+    const particleMat = new THREE.PointsMaterial({
+      color: 0xff9500,
+      size: 0.016,
+      transparent: true,
+      opacity: 0.6,
+    });
     const particles = new THREE.Points(particleGeo, particleMat);
     group.add(particles);
 
@@ -164,7 +211,11 @@ function HeroSection() {
         pos.array[i * 3] += particleVelocities[i].x;
         pos.array[i * 3 + 1] += particleVelocities[i].y;
         pos.array[i * 3 + 2] += particleVelocities[i].z;
-        const dist = Math.sqrt(pos.array[i * 3] ** 2 + pos.array[i * 3 + 1] ** 2 + pos.array[i * 3 + 2] ** 2);
+        const dist = Math.sqrt(
+          pos.array[i * 3] ** 2 +
+            pos.array[i * 3 + 1] ** 2 +
+            pos.array[i * 3 + 2] ** 2,
+        );
         if (dist > 2.2) {
           const theta = Math.random() * Math.PI * 2;
           const phi = Math.acos(2 * Math.random() - 1);
@@ -172,8 +223,14 @@ function HeroSection() {
           pos.array[i * 3] = r * Math.sin(phi) * Math.cos(theta);
           pos.array[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
           pos.array[i * 3 + 2] = r * Math.cos(phi);
-          const dir = new THREE.Vector3(pos.array[i * 3], pos.array[i * 3 + 1], pos.array[i * 3 + 2]).normalize();
-          particleVelocities[i] = dir.multiplyScalar(0.002 + Math.random() * 0.003);
+          const dir = new THREE.Vector3(
+            pos.array[i * 3],
+            pos.array[i * 3 + 1],
+            pos.array[i * 3 + 2],
+          ).normalize();
+          particleVelocities[i] = dir.multiplyScalar(
+            0.002 + Math.random() * 0.003,
+          );
         }
       }
       pos.needsUpdate = true;
@@ -196,7 +253,8 @@ function HeroSection() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       renderer.dispose();
-      if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
+      if (container.contains(renderer.domElement))
+        container.removeChild(renderer.domElement);
     };
   }, []);
 
@@ -206,18 +264,29 @@ function HeroSection() {
   };
   const itemVariants = {
     hidden: { opacity: 0, y: 20, filter: "blur(5px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   return (
     <section
       id="hero"
       className="relative min-h-screen w-full items-center overflow-hidden pt-28 lg:pt-32"
-      style={{ background: "linear-gradient(135deg, #080808 0%, #0d0d0d 50%, #0a0500 100%)" }}
+      style={{
+        background:
+          "linear-gradient(135deg, #080808 0%, #0d0d0d 50%, #0a0500 100%)",
+      }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 60% at 70% 50%, rgba(255,107,0,0.06) 0%, transparent 70%)" }}
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 60% at 70% 50%, rgba(255,107,0,0.06) 0%, transparent 70%)",
+        }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-6 pb-16 px-5 sm:px-8">
@@ -228,7 +297,10 @@ function HeroSection() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={itemVariants} className="chip mb-6 text-flame-400 border-flame-500/25 bg-flame-500/5">
+          <motion.div
+            variants={itemVariants}
+            className="chip mb-6 text-flame-400 border-flame-500/25 bg-flame-500/5"
+          >
             open to full-time opportunities
           </motion.div>
 
@@ -246,18 +318,30 @@ function HeroSection() {
             variants={itemVariants}
             className="mt-6 font-inter text-gray-400 max-w-xl text-base sm:text-lg lg:text-xl leading-relaxed"
           >
-            Full Stack Developer building fast, scalable web &amp; mobile products with{" "}
-            <span className="text-white font-medium">React, Next.js, React Native</span> and{" "}
-            <span className="text-white font-medium">Node.js</span> — deployed on AWS &amp; Docker,
-            shipped with CI/CD.
+            Full Stack Developer building fast, scalable web &amp; mobile
+            products with{" "}
+            <span className="text-white font-medium">
+              React, Next.js, React Native
+            </span>{" "}
+            and <span className="text-white font-medium">Node.js</span> —
+            deployed on AWS &amp; Docker, shipped with CI/CD.
           </motion.p>
 
           <motion.div
             variants={itemVariants}
             className="mt-6 flex flex-wrap gap-2 justify-center lg:justify-start"
           >
-            {["React.js", "Next.js", "React Native", "Node.js", "MongoDB", "AWS"].map((t) => (
-              <span key={t} className="chip">{t}</span>
+            {[
+              "React.js",
+              "Next.js",
+              "React Native",
+              "Node.js",
+              "MongoDB",
+              "AWS",
+            ].map((t) => (
+              <span key={t} className="chip">
+                {t}
+              </span>
             ))}
           </motion.div>
 
@@ -266,7 +350,11 @@ function HeroSection() {
             className="mt-9 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full items-center sm:items-start justify-center lg:justify-start"
           >
             <motion.button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="btn-flame w-full sm:w-auto justify-center inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-syne pulse-glow"
@@ -280,17 +368,19 @@ function HeroSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="w-full sm:w-auto px-7 py-3.5 rounded-full font-semibold transition-all duration-300 hover:text-flame-400 hover:border-flame-500 hover:bg-flame-500/5 text-center inline-flex items-center justify-center gap-2"
-              style={{ color: "#E5E5E5", border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.03)" }}
+              style={{
+                color: "#E5E5E5",
+                border: "1px solid rgba(255,255,255,0.12)",
+                background: "rgba(255,255,255,0.03)",
+              }}
             >
-              <Mail size={16} />
+              <FaEnvelope size={16} />
               Get in touch
             </motion.a>
           </motion.div>
         </motion.div>
 
-        <div
-          className="flex-shrink-0 relative w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] lg:w-[460px] lg:h-[460px] xl:w-[600px] xl:h-[600px] mx-auto lg:mx-0 lg:-translate-y-16 xl:-translate-y-16"
-        >
+        <div className="flex-shrink-0 relative w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] lg:w-[460px] lg:h-[460px] xl:w-[600px] xl:h-[600px] mx-auto lg:mx-0 lg:-translate-y-16 xl:-translate-y-16">
           <div ref={mountRef} className="absolute inset-0" />
 
           <motion.div
@@ -314,7 +404,10 @@ function HeroSection() {
               />
               <div
                 className="absolute inset-0"
-                style={{ background: "linear-gradient(180deg, transparent 60%, rgba(11,11,11,0.35) 100%)" }}
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent 60%, rgba(11,11,11,0.35) 100%)",
+                }}
               />
             </div>
           </motion.div>
@@ -322,14 +415,18 @@ function HeroSection() {
       </div>
 
       <motion.button
-        onClick={() => document.getElementById("stack")?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() =>
+          document
+            .getElementById("stack")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
         animate={inView ? { opacity: 1 } : {}}
         initial={{ opacity: 0 }}
         transition={{ delay: 1.2 }}
         className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 hover:text-flame-400 transition-colors"
       >
         <span className="text-xs font-mono tracking-widest2">SCROLL</span>
-        <ArrowDown size={16} />
+        <FaArrowDown size={16} />
       </motion.button>
     </section>
   );

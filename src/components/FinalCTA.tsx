@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { FaEnvelope } from "react-icons/fa6";
 
 export default function FinalCTA() {
   return (
@@ -31,7 +31,7 @@ export default function FinalCTA() {
           whileTap={{ scale: 0.95 }}
           className="btn-flame relative inline-flex items-center gap-2 px-9 py-4 rounded-full text-base pulse-glow"
         >
-          <Mail size={17} />
+          <FaEnvelope size={17} />
           Get in touch
         </motion.a>
       </motion.div>
