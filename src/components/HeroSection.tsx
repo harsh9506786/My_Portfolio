@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { motion, useInView } from "framer-motion";
 import { FaArrowDown, FaEnvelope } from "react-icons/fa6";
@@ -8,6 +8,18 @@ function HeroSection() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const textRef = useRef(null);
   const inView = useInView(textRef, { once: true });
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setHasScrolled(true);
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -420,10 +432,28 @@ function HeroSection() {
             .getElementById("stack")
             ?.scrollIntoView({ behavior: "smooth" })
         }
-        animate={inView ? { opacity: 1 } : {}}
         initial={{ opacity: 0 }}
-        transition={{ delay: 1.2 }}
-        className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 hover:text-flame-400 transition-colors"
+        animate={
+          inView
+            ? hasScrolled
+              ? { opacity: 1, y: 0 }
+              : { opacity: 1, y: [0, 8, 0] }
+            : {}
+        }
+        transition={
+          hasScrolled
+            ? { duration: 0.3 }
+            : {
+                opacity: { delay: 1.2 },
+                y: {
+                  repeat: Infinity,
+                  duration: 1.4,
+                  ease: "easeInOut",
+                  delay: 1.2,
+                },
+              }
+        }
+        className="hidden sm:flex absolute bottom-16 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 hover:text-flame-400 transition-colors"
       >
         <span className="text-xs font-mono tracking-widest2">SCROLL</span>
         <FaArrowDown size={16} />

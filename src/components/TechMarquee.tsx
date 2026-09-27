@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const stack = [
   "React.js", "Next.js", "React Native", "TypeScript", "Node.js", "Express.js",
-  "MongoDB", "MySQL", "Redis", "AWS", "Docker", "GitHub Actions", "GraphQL", "Tailwind CSS",
+  "MongoDB", "MySQL", "Redis", "AWS", "Docker", "GitHub Actions", "Tailwind CSS",
 ];
 
 export function TechMarquee() {
