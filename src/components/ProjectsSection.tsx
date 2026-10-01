@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaArrowUpRightFromSquare, FaGithub } from "react-icons/fa6";
 import CaseStudyModal from "./CaseStudyModal";
+import PhoneGallery from "./PhoneGallery";
 import { projects, Project } from "../data/projects";
 
 // Converts a project title into a URL-friendly slug, e.g. "Shrutika" -> "shrutika"
@@ -118,6 +119,10 @@ export default function ProjectsSection() {
                   </li>
                 ))}
               </ul>
+
+              {p.screenshots && p.screenshots.length > 0 && (
+                <PhoneGallery title={p.title} screenshots={p.screenshots} />
+              )}
 
               <div className="flex flex-wrap gap-2">
                 {p.stack.map((s) => (

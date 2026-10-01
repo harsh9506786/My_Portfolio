@@ -9,6 +9,15 @@ export interface ExtraLink {
   url: string;
 }
 
+export interface AppScreenshot {
+  /** Path inside /public, e.g. "/screenshots/brew-bliss/01-home.webp" */
+  src: string;
+  caption: string;
+  /** Colour of the top of the screenshot (fills the fake status bar) */
+  statusBg?: string;
+  statusTone?: "dark" | "light";
+}
+
 export interface Project {
   title: string;
   tagline: string;
@@ -26,6 +35,7 @@ export interface Project {
   qrCaption?: string;
   demoVideo?: string;
   demoVideoPoster?: string;
+  screenshots?: AppScreenshot[];
 }
 
 export const projects: Project[] = [
@@ -179,6 +189,97 @@ Express.js REST API (Node.js)
       "https://res.cloudinary.com/nlszpkhg/video/upload/f_auto,q_auto,w_720/v1785584997/Shrutika_eceapd.mp4",
     demoVideoPoster:
       "https://res.cloudinary.com/nlszpkhg/video/upload/f_auto,q_auto,w_720/v1785584997/Shrutika_eceapd.jpg",
+  },
+  {
+    title: "Brew & Bliss",
+    tagline: "Coffee Ordering Mobile App (Flutter)",
+    period: "2026",
+    status: "Completed",
+    description:
+      "A polished, coffee-only ordering app built with Flutter — browse a curated coffee menu, save favorites, track orders and pick up rewards, all inside a smooth, animation-rich UI. Beyond the screens, I focused on how it feels and performs: skeleton loaders, lazy-built tabs, a virtualized home feed and a single shared data layer.",
+    highlights: [
+      "Five-tab app (Home, Menu, Orders, Favorites, Profile) with a custom floating bottom nav, animated drawer and an auto-sliding promo carousel whose buttons deep-link into the app",
+      "Single source of truth for the coffee catalogue — Home, Menu and All Products all render from one data file, with category chips derived from the data itself",
+      "Shared ChangeNotifier-based wishlist so the hearts on Home and the Favorites tab always stay in sync",
+      "Performance pass: lazily built tabs, a virtualized (sliver-based) Home feed, scroll state moved to ValueNotifiers, and images decoded at display size",
+      "Custom shimmer skeleton loaders (no packages), pull-to-refresh, a Blinkit-style pinned category bar on Menu and a checkout loader that blocks double submits",
+      "Premium typography — Plus Jakarta Sans paired with Playfair Display italic — and haptic feedback on key interactions",
+    ],
+    stack: [
+      "Flutter",
+      "Dart",
+      "Material 3",
+      "Slivers",
+      "ChangeNotifier",
+      "Google Fonts",
+      "Custom Shimmer",
+      "Skeleton Loading",
+    ],
+    live: null,
+    // TODO: update to the real repo URL after pushing
+    github: "https://github.com/harsh9506786/Brew-and-Bliss",
+    screenshots: [
+      { src: "/screenshots/brew-bliss/01-home.webp", caption: "Home" },
+      { src: "/screenshots/brew-bliss/02-menu.webp", caption: "Menu" },
+      {
+        src: "/screenshots/brew-bliss/03-product-detail.webp",
+        caption: "Product detail",
+        statusBg: "#948f7c",
+      },
+      { src: "/screenshots/brew-bliss/04-favorites.webp", caption: "Favorites" },
+      { src: "/screenshots/brew-bliss/05-orders.webp", caption: "Orders" },
+      {
+        src: "/screenshots/brew-bliss/06-drawer.webp",
+        caption: "Side drawer",
+        statusBg: "#6b3218",
+        statusTone: "light",
+      },
+    ],
+    caseStudy: [
+      {
+        heading: "Architecture Overview",
+        diagram: `main.dart ──► SplashScreen ──► MainScreen (IndexedStack, lazy tabs)
+                                  │
+      ┌───────────┬───────────┬───┴───────┬────────────┐
+      ▼           ▼           ▼           ▼            ▼
+    Home        Menu        Orders     Favorites     Profile
+  (slivers)  (pinned chips) (skeleton) (shared model)
+
+Shared layer
+  data/products.dart  ──► one catalogue for Home, Menu, All Products
+  WishlistModel       ──► ChangeNotifier singleton (Home ⇄ Favorites)
+  widgets/            ──► Shimmer + skeletons, AppNetworkImage, ProductCard, AppDrawer`,
+        paragraphs: [
+          "Brew & Bliss is a Flutter app organised around a bottom-nav shell (MainScreen) that hosts five tabs in an IndexedStack. Every screen reads from the same product catalogue and the same wishlist model, so a change in one place — a heart tapped on Home, a new coffee added to the data file — shows up everywhere without duplicate code.",
+        ],
+      },
+      {
+        heading: "Performance Work",
+        paragraphs: [
+          "The IndexedStack originally built all five tabs on launch. I now track which tabs have been visited and build a tab only the first time it is opened, then keep it alive — lighter startup without losing scroll position or state when switching.",
+          "The Home screen was a SingleChildScrollView with a Column, which built every section up-front. I rebuilt it as a CustomScrollView with a SliverList so each section is only built as it nears the viewport, wrapped in a keep-alive so inner state (like the horizontal scroll position of the Popular Coffees strip) survives.",
+          "A scroll listener was calling setState on every frame and rebuilding the whole screen. I moved the scroll position into ValueNotifiers so only the header shadow and the banner parallax rebuild.",
+          "A shared AppNetworkImage decodes images at the size they are actually drawn (cacheWidth from the layout width and device pixel ratio), shows a shimmer while loading, fades the image in and falls back to an icon on error.",
+        ],
+      },
+      {
+        heading: "UX Details",
+        paragraphs: [
+          "Skeleton loaders are built from scratch: a single ShaderMask-based shimmer driven by one animation controller per layout, with ready-made skeletons for category rows, product strips, the menu grid and order lists — plus pull-to-refresh on Home and Menu.",
+          "The Menu uses a Blinkit-style scroll: the title and search bar scroll away while the category chips stay pinned under a SliverPersistentHeader, gaining a soft shadow once content slides beneath them.",
+          "The promo carousel auto-advances, pauses its timer when the user swipes, and every slide's button deep-links to the right place (Menu tab, All Products, a product detail sheet or Rewards). Checkout shows an in-button loader and ignores extra taps so an order can't be submitted twice.",
+        ],
+      },
+      {
+        heading: "Challenges Solved",
+        paragraphs: [
+          "Drawer shortcuts silently did nothing: one navigation path opened HomeScreen directly instead of the tab shell, so the tab-switch callback was never wired. Tracing the route flow and routing everything through MainScreen fixed it.",
+          "The Menu had its own hard-coded item model and prices, drifting from the rest of the app. Consolidating on the shared catalogue (and deriving categories from it) removed the duplication and the currency mismatch.",
+          "Switching to a sliver-based Menu meant AnimatedSwitcher could no longer wrap the grid, so I replaced the crossfade with keyed per-item entrance animations, and capped the stagger delay so long lists never feel slow.",
+        ],
+      },
+    ],
+    note: "Frontend-only build using local sample data — backend, auth and payments are the natural next step.",
   },
   {
     title: "DocChat",
