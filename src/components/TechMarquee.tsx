@@ -1,9 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 const stack = [
   "React.js", "Next.js", "React Native", "TypeScript", "Node.js", "Express.js",
-  "MongoDB", "MySQL", "Redis", "AWS", "Docker", "GitHub Actions", "Tailwind CSS",
+  "MongoDB", "MySQL", "Redis", "AWS", "Docker", "GitHub Actions", "Tailwind CSS", "Flutter", "Dart",
 ];
 
 export function TechMarquee() {
@@ -16,11 +15,8 @@ export function TechMarquee() {
       <div className="relative">
         <div className="absolute left-0 top-0 h-full w-16 sm:w-32 bg-gradient-to-r from-dark-900 to-transparent z-10" />
         <div className="absolute right-0 top-0 h-full w-16 sm:w-32 bg-gradient-to-l from-dark-900 to-transparent z-10" />
-        <motion.div
-          className="flex gap-4 sm:gap-6 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 28, ease: "linear", repeat: Infinity }}
-        >
+        {/* pure-CSS transform animation: runs on the GPU compositor, no JS per frame */}
+        <div className="marquee-track flex gap-4 sm:gap-6 w-max">
           {loop.map((t, i) => (
             <span
               key={`${t}-${i}`}
@@ -29,7 +25,7 @@ export function TechMarquee() {
               {t}
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

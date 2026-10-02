@@ -8,16 +8,16 @@ export function Loader({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((p) => {
-        const next = p + Math.random() * 18;
+        const next = p + 10 + Math.random() * 22;
         if (next >= 100) {
           clearInterval(interval);
-          setTimeout(() => setDone(true), 300);
-          setTimeout(onComplete, 900);
+          setTimeout(() => setDone(true), 150);
+          setTimeout(onComplete, 600);
           return 100;
         }
         return next;
       });
-    }, 120);
+    }, 100);
     return () => clearInterval(interval);
   }, [onComplete]);
 

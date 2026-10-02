@@ -39,6 +39,7 @@ body {
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='1'/%3E%3C/svg%3E");
   animation: grain-shift 0.5s steps(2) infinite;
+  will-change: transform;
 }
 @keyframes grain-shift {
   0%   { transform: translate(0, 0); }
@@ -59,7 +60,6 @@ body {
   z-index: 9998;
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
-  transition: transform 0.08s linear;
 }
 @media (hover: hover) and (pointer: fine) {
   html, body, button, a, * { cursor: none !important; }
@@ -143,4 +143,44 @@ body {
     scrollbar-width: thin;
     scrollbar-color: #ff5a00 rgba(255, 255, 255, 0.06);
   }
+}
+
+/* ─── TECH MARQUEE (CSS transform -> runs on the GPU, not JS) ──────── */
+.marquee-track {
+  animation: marquee-scroll 28s linear infinite;
+  will-change: transform;
+}
+@keyframes marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ─── MOBILE / LOW-POWER PERFORMANCE ───────────────────────────────── */
+/* Touch devices: drop effects that only make sense with a mouse and are
+   costly to composite on phones. */
+@media (hover: none), (pointer: coarse), (max-width: 1023px) {
+  .film-grain,
+  .cursor-glow {
+    display: none !important;
+  }
+  /* animating box-shadow repaints every frame - use a static glow instead */
+  .pulse-glow {
+    animation: none;
+    box-shadow: 0 0 28px rgba(255, 90, 0, 0.45);
+  }
+  /* no sticky hover states / extra paint on tap */
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Respect "reduce motion" */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none; }
 }

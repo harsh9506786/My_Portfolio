@@ -196,7 +196,7 @@ Express.js REST API (Node.js)
     period: "2026",
     status: "Completed",
     description:
-      "A polished, coffee-only ordering app built with Flutter — browse a curated coffee menu, save favorites, track orders and pick up rewards, all inside a smooth, animation-rich UI. Beyond the screens, I focused on how it feels and performs: skeleton loaders, lazy-built tabs, a virtualized home feed and a single shared data layer.",
+      "A coffee-only ordering app I built in Flutter to take my frontend skills beyond React and React Native. Browse a curated coffee menu, save favorites, track orders and pick up rewards inside a smooth, animation-rich UI — with a focus on how it feels and performs: skeleton loaders, lazy-built tabs, a virtualized home feed and one shared data layer.",
     highlights: [
       "Five-tab app (Home, Menu, Orders, Favorites, Profile) with a custom floating bottom nav, animated drawer and an auto-sliding promo carousel whose buttons deep-link into the app",
       "Single source of truth for the coffee catalogue — Home, Menu and All Products all render from one data file, with category chips derived from the data itself",
@@ -217,7 +217,7 @@ Express.js REST API (Node.js)
     ],
     live: null,
     // TODO: update to the real repo URL after pushing
-    github: "https://github.com/harsh9506786/Brew-Bliss",
+    github: "https://github.com/harsh9506786/Brew-and-Bliss",
     screenshots: [
       { src: "/screenshots/brew-bliss/01-home.webp", caption: "Home" },
       { src: "/screenshots/brew-bliss/02-menu.webp", caption: "Menu" },
@@ -279,7 +279,7 @@ Shared layer
         ],
       },
     ],
-    note: "Frontend-only build using local sample data — backend, auth and payments are the natural next step.",
+    note: "A learning-driven Flutter project — frontend-only with local sample data. Backend, auth and payments are the natural next step.",
   },
   {
     title: "DocChat",

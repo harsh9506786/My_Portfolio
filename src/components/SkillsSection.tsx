@@ -2,11 +2,18 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Layout, Server, Database, Cloud, Network, Terminal, Sparkles } from "lucide-react";
 
-const groups = [
+const groups: {
+  icon: React.ElementType;
+  title: string;
+  items: string[];
+  /** working knowledge - shown as dashed chips, below the core skills */
+  familiar?: string[];
+}[] = [
   {
     icon: Layout,
     title: "Frontend",
     items: ["React.js", "Next.js", "React Native", "HTML/CSS", "Tailwind CSS"],
+    familiar: ["Flutter"],
   },
   {
     icon: Server,
@@ -37,6 +44,7 @@ const groups = [
     icon: Terminal,
     title: "Languages",
     items: ["JavaScript", "TypeScript", "C++"],
+    familiar: ["Dart"],
   },
 ];
 
@@ -82,11 +90,25 @@ export default function SkillsSection() {
                       {item}
                     </span>
                   ))}
+                  {g.familiar?.map((item) => (
+                    <span
+                      key={item}
+                      title="Working knowledge"
+                      className="chip text-[0.68rem] py-1.5 border-dashed text-gray-400"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </motion.div>
             );
           })}
         </div>
+
+        <p className="mt-6 text-center font-mono text-[0.68rem] tracking-wide text-gray-500">
+          <span className="inline-block w-5 border-t border-dashed border-gray-500 align-middle mr-2" />
+          dashed = working knowledge, still growing
+        </p>
       </div>
     </section>
   );

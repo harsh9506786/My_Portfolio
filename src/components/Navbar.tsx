@@ -17,8 +17,13 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll);
+    // only call setState when the value actually flips (not on every scroll tick)
+    const onScroll = () => {
+      const next = window.scrollY > 24;
+      setScrolled((prev) => (prev === next ? prev : next));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -32,9 +37,9 @@ export function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 w-full z-[900] transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-[900] transition-colors duration-300 ${
         scrolled
-          ? "bg-dark-900/80 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+          ? "bg-dark-900/95 lg:bg-dark-900/80 lg:backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
           : "bg-transparent"
       }`}
     >
@@ -102,7 +107,7 @@ export function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden overflow-hidden bg-dark-900/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+            className="lg:hidden overflow-hidden bg-dark-900/95 shadow-[0_1px_0_rgba(255,255,255,0.05)]"
           >
             <div className="flex flex-col px-6 py-4 gap-4">
               {links.map((l) => (

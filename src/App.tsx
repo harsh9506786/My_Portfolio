@@ -30,7 +30,7 @@ function CursorGlow() {
       tx = e.clientX;
       ty = e.clientY;
     };
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     const tick = () => {
       cx += (tx - cx) * 0.12;
       cy += (ty - cy) * 0.12;
@@ -47,15 +47,43 @@ function CursorGlow() {
   return <div ref={glowRef} className="cursor-glow" aria-hidden="true" />;
 }
 
+// Mouse-only effects (film grain, cursor glow) are pointless on phones and
+// expensive to composite there, so they are only rendered with a real mouse.
+function useFinePointer() {
+  const [fine] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches,
+  );
+  return fine;
+}
+
 export function App() {
-  const [loading, setLoading] = useState(true);
+  // the intro loader plays once per browser session, not on every reload
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem("hs_loaded");
+    } catch {
+      return true;
+    }
+  });
+  const finePointer = useFinePointer();
+
+  const handleLoaded = () => {
+    try {
+      sessionStorage.setItem("hs_loaded", "1");
+    } catch {
+      /* private mode - ignore */
+    }
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-dark-900 text-white overflow-x-hidden">
-      {loading && <Loader onComplete={() => setLoading(false)} />}
+      {loading && <Loader onComplete={handleLoaded} />}
       <CustomCursor />
-      <div className="film-grain" aria-hidden="true" />
-      <CursorGlow />
+      {finePointer && <div className="film-grain" aria-hidden="true" />}
+      {finePointer && <CursorGlow />}
       <Navbar />
       <main>
         <HeroSection />
@@ -72,7 +100,7 @@ export function App() {
         <ExperienceSection />
         <div className="sep" />
         <CertificatesSection />
-     
+
         <div className="sep" />
         <WhyHireMe />
         <div className="sep" />
