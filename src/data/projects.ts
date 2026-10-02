@@ -217,7 +217,7 @@ Express.js REST API (Node.js)
     ],
     live: null,
     // TODO: update to the real repo URL after pushing
-    github: "https://github.com/harsh9506786/Brew-and-Bliss",
+    github: "https://github.com/harsh9506786/Brew-Bliss",
     screenshots: [
       { src: "/screenshots/brew-bliss/01-home.webp", caption: "Home" },
       { src: "/screenshots/brew-bliss/02-menu.webp", caption: "Menu" },
