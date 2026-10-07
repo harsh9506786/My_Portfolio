@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FaArrowUpRightFromSquare, FaGithub } from "react-icons/fa6";
 import CaseStudyModal from "./CaseStudyModal";
 import PhoneGallery from "./PhoneGallery";
+import DesktopMobileShowcase from "./DesktopMobileShowcase";
 import { projects, Project } from "../data/projects";
 
 // Converts a project title into a URL-friendly slug, e.g. "Shrutika" -> "shrutika"
@@ -119,6 +120,15 @@ export default function ProjectsSection() {
                   </li>
                 ))}
               </ul>
+
+              {p.desktopScreenshot && p.mobileScreenshot && (
+                <DesktopMobileShowcase
+                  title={p.title}
+                  desktop={p.desktopScreenshot}
+                  mobile={p.mobileScreenshot}
+                  url={p.live?.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                />
+              )}
 
               {p.screenshots && p.screenshots.length > 0 && (
                 <PhoneGallery title={p.title} screenshots={p.screenshots} />

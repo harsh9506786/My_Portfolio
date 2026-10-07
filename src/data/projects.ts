@@ -36,6 +36,8 @@ export interface Project {
   demoVideo?: string;
   demoVideoPoster?: string;
   screenshots?: AppScreenshot[];
+  desktopScreenshot?: AppScreenshot;
+  mobileScreenshot?: AppScreenshot;
 }
 
 export const projects: Project[] = [
@@ -74,6 +76,14 @@ export const projects: Project[] = [
     ],
     live: "https://car-rental-application-gray.vercel.app/",
     github: "https://github.com/harsh9506786",
+    desktopScreenshot: {
+      src: "/screenshots/drivego/carrentalimg.jpeg",
+      caption: "Desktop view",
+    },
+    mobileScreenshot: {
+      src: "/screenshots/drivego/carrentalmobile.jpeg",
+      caption: "Mobile view",
+    },
     caseStudy: [
       {
         heading: "Architecture Overview",
@@ -225,7 +235,10 @@ Express.js REST API (Node.js)
         caption: "Product detail",
         statusBg: "#948f7c",
       },
-      { src: "/screenshots/brew-bliss/04-favorites.webp", caption: "Favorites" },
+      {
+        src: "/screenshots/brew-bliss/04-favorites.webp",
+        caption: "Favorites",
+      },
       { src: "/screenshots/brew-bliss/05-orders.webp", caption: "Orders" },
       {
         src: "/screenshots/brew-bliss/06-drawer.webp",
