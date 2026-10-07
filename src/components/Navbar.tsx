@@ -120,8 +120,8 @@ export function Navbar() {
                 </button>
               ))}
               <a
-                href="/HarshvardhanSharma_resume.pdf"
-                download="/HarshvardhanSharma_resume.pdf"
+                href="/Harshvardhan_Resume.pdf"
+                download="/Harshvardhan_Resume.pdf"
                 onClick={() => setOpen(false)}
                 className="btn-flame flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm w-full"
               >
