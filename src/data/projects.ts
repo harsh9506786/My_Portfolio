@@ -216,7 +216,6 @@ Express.js REST API (Node.js)
       "Skeleton Loading",
     ],
     live: null,
-    // TODO: update to the real repo URL after pushing
     github: "https://github.com/harsh9506786/Brew-Bliss",
     screenshots: [
       { src: "/screenshots/brew-bliss/01-home.webp", caption: "Home" },

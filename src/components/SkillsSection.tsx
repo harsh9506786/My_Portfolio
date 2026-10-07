@@ -1,6 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Layout, Server, Database, Cloud, Network, Terminal, Sparkles } from "lucide-react";
+import {
+  Layout,
+  Server,
+  Database,
+  Cloud,
+  Network,
+  Terminal,
+  Sparkles,
+} from "lucide-react";
 
 const groups: {
   icon: React.ElementType;
@@ -23,7 +31,13 @@ const groups: {
   {
     icon: Sparkles,
     title: "AI / GenAI",
-    items: ["Gemini API", "RAG", "Embeddings", "Vector Search", "Prompt Engineering"],
+    items: [
+      "Gemini API",
+      "RAG",
+      "Embeddings",
+      "Vector Search",
+      "Prompt Engineering",
+    ],
   },
   {
     icon: Database,
@@ -33,17 +47,30 @@ const groups: {
   {
     icon: Cloud,
     title: "Cloud & DevOps",
-    items: ["AWS (EC2, S3, IAM, CloudFront)", "Docker", "GitHub Actions", "Vercel", "Railway", "Render"],
+    items: [
+      "AWS (EC2, S3, IAM, CloudFront)",
+      "Docker",
+      "GitHub Actions",
+      "Vercel",
+      "Railway",
+      "Render",
+    ],
   },
   {
     icon: Network,
     title: "System Design",
-    items: ["Load Balancing", "Caching", "DB Sharding", "Replication", "CAP Theorem"],
+    items: [
+      "Load Balancing",
+      "Caching",
+      "DB Sharding",
+      "Replication",
+      "CAP Theorem",
+    ],
   },
   {
     icon: Terminal,
     title: "Languages",
-    items: ["JavaScript", "TypeScript", "C++"],
+    items: ["JavaScript", "TypeScript", "Python",  "C++"],
     familiar: ["Dart"],
   },
 ];
@@ -83,7 +110,9 @@ export default function SkillsSection() {
                 <div className="w-11 h-11 rounded-xl bg-flame-500/10 flex items-center justify-center mb-4">
                   <Icon className="text-flame-400" size={20} />
                 </div>
-                <h3 className="font-syne font-700 text-lg text-white mb-3">{g.title}</h3>
+                <h3 className="font-syne font-700 text-lg text-white mb-3">
+                  {g.title}
+                </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {g.items.map((item) => (
                     <span key={item} className="chip text-[0.68rem] py-1.5">

@@ -1,8 +1,22 @@
 import React from "react";
 
 const stack = [
-  "React.js", "Next.js", "React Native", "TypeScript", "Node.js", "Express.js",
-  "MongoDB", "MySQL", "Redis", "AWS", "Docker", "GitHub Actions", "Tailwind CSS", "Flutter", "Dart",
+  "React.js",
+  "Next.js",
+  "React Native",
+  "TypeScript",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "MySQL",
+  "Redis",
+  "AWS",
+  "Docker",
+  "Python",
+  "GitHub Actions",
+  "Tailwind CSS",
+  "Flutter",
+  "Dart",
 ];
 
 export function TechMarquee() {
