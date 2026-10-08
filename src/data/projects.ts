@@ -16,6 +16,8 @@ export interface AppScreenshot {
   /** Colour of the top of the screenshot (fills the fake status bar) */
   statusBg?: string;
   statusTone?: "dark" | "light";
+  /** Colour of the bottom safe-area strip under the screenshot */
+  bottomBg?: string;
 }
 
 export interface Project {
@@ -83,6 +85,9 @@ export const projects: Project[] = [
     mobileScreenshot: {
       src: "/screenshots/drivego/carrentalmobile.jpeg",
       caption: "Mobile view",
+      statusBg: "#17110f",
+      statusTone: "light",
+      bottomBg: "#17110f",
     },
     caseStudy: [
       {
@@ -365,6 +370,17 @@ Shared layer
     ],
     live: "https://bio-tech-xgye.vercel.app/",
     github: "https://github.com/harsh9506786/Bio-Tech",
+    desktopScreenshot: {
+      src: "/screenshots/biotech/biotechdesktop.webp",
+      caption: "Desktop view",
+    },
+    mobileScreenshot: {
+      src: "/screenshots/biotech/biotechmobile.webp",
+      caption: "Mobile view",
+      statusBg: "#17110f",
+      statusTone: "light",
+      bottomBg: "#17110f",
+    },
   },
   {
     title: "Agnee",
