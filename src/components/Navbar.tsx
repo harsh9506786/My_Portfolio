@@ -28,8 +28,12 @@ export function Navbar() {
   }, []);
 
   const scrollTo = (id: string) => {
+    // mobile menu open hai to uski close animation khatam hone do, phir scroll karo
+    const delay = open ? 300 : 0;
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, delay);
   };
 
   return (
@@ -121,7 +125,7 @@ export function Navbar() {
               ))}
               <a
                 href="/Harshvardhan_Resume.pdf"
-                download="/Harshvardhan_Resume.pdf"
+                download="Harshvardhan_Resume.pdf"
                 onClick={() => setOpen(false)}
                 className="btn-flame flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm w-full"
               >
